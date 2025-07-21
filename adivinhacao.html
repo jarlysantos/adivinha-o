@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+function jogarAdivinhacao() {
+    let jogarNovamente = true;
+
+    while (jogarNovamente) {
+        const numeroSecreto = Math.floor(Math.random() * 100) + 1;
+        const tentativasMaximas = 7;
+        let tentativas = 0;
+        let acertou = false;
+
+        alert("Eu pensei em um número entre 1 e 100. Tente adivinhar!");
+
+        while (tentativas < tentativasMaximas) {
+            let entrada = prompt(`Tentativa ${tentativas + 1} de ${tentativasMaximas}. Qual o seu palpite:`);
+
+            let palpite = parseInt(entrada);
+            if (isNaN(palpite) || palpite < 1 || palpite > 100) {
+                alert("Digite um número válido entre 1 e 100.");
+                continue;
+            }
+
+            tentativas++;
+
+            if (palpite === numeroSecreto) {
+                alert(`Muito bem! Você acertou o número ${numeroSecreto} em ${tentativas} tentativa(s).`);
+                acertou = true;
+                break;
+            } else if (palpite < numeroSecreto) {
+                alert("O número secreto é MAIOR que seu palpite.");
+            } else {
+                alert("O número secreto é MENOR que seu palpite.");
+            }
+        }
+
+        if (!acertou) {
+            alert(`Você perdeu! O número era ${numeroSecreto}.`);
+        }
+
+        jogarNovamente = confirm("Deseja jogar novamente?");
+    }
+
+    alert("Obrigado por jogar!");
+}
+
+
+jogarAdivinhacao();
+
+    </script>
+
+</body>
+</html>
